@@ -1,2 +1,2 @@
 # haskell-daskell
-Learning haskell togehter
+Learning Haskell togehter
