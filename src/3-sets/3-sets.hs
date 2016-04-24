@@ -19,6 +19,7 @@ findCandidates seed1 seed2 seed3 set_size = [ (a, b, c) |
                                                        a <- map (seed1:) (combinations (set_size-1) (neighbours seed1 max)), 
                                                        b <- map (seed2:) (combinations (set_size-1) (neighbours seed2 max)), 
                                                        c <- map (seed3:) (combinations (set_size-1) (neighbours seed3 max)),
+                                                       sum a + sum b + sum c == expectedTotalSum set_size,
                                                        disjunct a b,
                                                        disjunct b c,
                                                        disjunct a c 
@@ -26,6 +27,9 @@ findCandidates seed1 seed2 seed3 set_size = [ (a, b, c) |
 
                                             where
                                                        max = maxRange set_size
+
+expectedTotalSum :: Int -> Int
+expectedTotalSum a = (a * (a ^ 3 + 1)) `div` 2
 
 isSumSurj :: ([Int], [Int], [Int]) -> Int -> Bool
 isSumSurj a maxRange = exact allSums [1 .. maxRange]
